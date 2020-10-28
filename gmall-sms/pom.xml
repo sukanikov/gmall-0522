@@ -8,10 +8,10 @@
         <version>0.0.1-SNAPSHOT</version>
     </parent>
     <groupId>com.atguigu</groupId>
-    <artifactId>gmall-pms</artifactId>
+    <artifactId>gmall-sms</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>gmall-pms</name>
-    <description>谷粒商城商品管理系统</description>
+    <name>gmall-sms</name>
+    <description>谷粒商城营销管理系统</description>
 
 
     <dependencies>
@@ -69,6 +69,7 @@
             </exclusions>
         </dependency>
     </dependencies>
+
 
     <build>
         <plugins>
