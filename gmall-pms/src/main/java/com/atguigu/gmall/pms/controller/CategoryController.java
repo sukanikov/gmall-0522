@@ -45,6 +45,11 @@ public class CategoryController {
         return ResponseVo.ok(pageResultVo);
     }
 
+    @GetMapping("/parent/{parentId}")
+    public ResponseVo<List<CategoryEntity>> queryCategoriesByPid(@PathVariable("parentId") Long pid){
+        List<CategoryEntity> categoryEntities = this.categoryService.queryCategoriesByPid(pid);
+        return ResponseVo.ok(categoryEntities);
+    }
 
     /**
      * 信息
