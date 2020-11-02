@@ -67,5 +67,7 @@ public class SkuBoundsServiceImpl extends ServiceImpl<SkuBoundsMapper, SkuBounds
         ladderEntity.setAddOther(skuSaleVo.getLadderAddOther());
         this.ladderMapper.insert(ladderEntity);
 
+//        int i = 1/0;
+
     }
 }
