@@ -1,7 +1,9 @@
 package com.atguigu.gmall.pms.controller;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
+import com.atguigu.gmall.pms.vo.SpuVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -34,6 +36,14 @@ public class SpuController {
     @Autowired
     private SpuService spuService;
 
+    @GetMapping("/category/{categoryId}")
+    public ResponseVo<PageResultVo> querySpuByCidAndPage(
+            @PathVariable("categoryId") Long cid,
+            PageParamVo pageParamVo){
+        PageResultVo pageResultVo = this.spuService.querySpuByCidAndPage(cid, pageParamVo);
+        return ResponseVo.ok(pageResultVo);
+    }
+
     /**
      * 列表
      */
@@ -58,12 +68,14 @@ public class SpuController {
     }
 
     /**
-     * 保存
+     * 大保存——一次同时保存多张表数据
      */
     @PostMapping
     @ApiOperation("保存")
-    public ResponseVo<Object> save(@RequestBody SpuEntity spu){
-		spuService.save(spu);
+    public ResponseVo<Object> save(@RequestBody SpuVo spu) throws FileNotFoundException {
+
+
+        this.spuService.bigSave(spu);
 
         return ResponseVo.ok();
     }
