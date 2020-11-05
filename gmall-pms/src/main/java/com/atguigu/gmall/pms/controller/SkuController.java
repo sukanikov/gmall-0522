@@ -35,6 +35,13 @@ public class SkuController {
     @Autowired
     private SkuService skuService;
 
+    @GetMapping("spu/{spuId}")
+    public ResponseVo<List<SkuEntity>> querySkusBySpuId(@PathVariable("spuId")Long spuId){
+        List<SkuEntity> skuEntities = this.skuService.list(new QueryWrapper<SkuEntity>().eq("spu_id", spuId));
+        return ResponseVo.ok(skuEntities);
+    }
+
+
     /**
      * 列表
      */
@@ -44,12 +51,6 @@ public class SkuController {
         PageResultVo pageResultVo = skuService.queryPage(paramVo);
 
         return ResponseVo.ok(pageResultVo);
-    }
-
-    @GetMapping("/spu/{spuId}")
-    public ResponseVo<List<SkuEntity>> querySkuBySpuId(@PathVariable("spuId") Long spuId){
-        List<SkuEntity> skuEntities = this.skuService.list(new QueryWrapper<SkuEntity>().eq("spu_id", spuId));
-        return ResponseVo.ok(skuEntities);
     }
 
 
