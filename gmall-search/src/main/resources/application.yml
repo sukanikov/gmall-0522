@@ -1,3 +1,6 @@
 server:
   port: 18086
 
+spring:
+  jackson:
+    default-property-inclusion: non_null  #返回结果不包含空字段，降低带宽
