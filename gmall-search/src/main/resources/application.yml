@@ -4,3 +4,15 @@ server:
 spring:
   jackson:
     default-property-inclusion: non_null  #返回结果不包含空字段，降低带宽
+  thymeleaf:
+    cache: false
+  rabbitmq:
+    virtual-host: /bailiang
+    host: 192.168.56.10
+    username: bailiang
+    password: bailiang
+    listener:
+      simple:
+        prefetch: 1
+        concurrency: 4
+        acknowledge-mode: manual

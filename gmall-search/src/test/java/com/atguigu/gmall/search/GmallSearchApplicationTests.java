@@ -36,6 +36,9 @@ class GmallSearchApplicationTests {
     @Autowired
     private GmallWmsClient wmsClient;
 
+    /**
+     * 将数据导入es
+     */
     @Test
     void contextLoads() {
         // 初始化索引库和映射
