@@ -5,7 +5,7 @@ feign:
     enabled: true
 mybatis-plus:
   mapper-locations: classpath:mapper/pms/**/*.xml
-  type-aliases-package: com.atguigu.gmall.pms.entity
+  type-aliases-package: com.atguigu.gmall.pms.entity  #别名扫描
   global-config:
     db-config:
       id-type: auto

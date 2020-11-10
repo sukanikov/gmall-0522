@@ -31,3 +31,11 @@ spring:
           uri: lb://search-service
           predicates:
             - Host=search.gmall.com   #需要在nginx配置文件设置，把域名信息放入头信息，然后转发过来
+        - id: index-route
+          uri: lb://index-service
+          predicates:
+            - Path=/index/**
+        - id: index-route2
+          uri: lb://index-service
+          predicates:
+            - Host=gmall.com, www.gmall.com
