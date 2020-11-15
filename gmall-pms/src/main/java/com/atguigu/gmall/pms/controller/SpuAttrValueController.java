@@ -35,6 +35,7 @@ public class SpuAttrValueController {
     @Autowired
     private SpuAttrValueService spuAttrValueService;
 
+
     @GetMapping("/search/attr/{spuId}")
     public ResponseVo<List<SpuAttrValueEntity>> querySearchSpuAttrValueBySpuIdAndCid(
             @PathVariable("spuId")Long spuId,
