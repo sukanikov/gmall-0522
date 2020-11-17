@@ -2,21 +2,21 @@ package com.atguigu.gmall.ums.entity;
 
 import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
+import lombok.Data;
 
 import java.io.Serializable;
 import java.util.Date;
-import lombok.Data;
 
 /**
- * 收货地址表
+ * 购物积分记录表
  * 
  * @author bailiang
  * @email 724454448@qq.com
  * @date 2020-10-28 18:58:53
  */
 @Data
-@TableName("ums_user_address")
-public class UserAddressEntity implements Serializable {
+@TableName("ums_integration_history")
+public class IntegrationHistoryEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -29,36 +29,20 @@ public class UserAddressEntity implements Serializable {
 	 */
 	private Long userId;
 	/**
-	 * 收货人
+	 * 创建时间
 	 */
-	private String name;
+	private Date createTime;
 	/**
-	 * 电话
+	 * 变动数量
 	 */
-	private String phone;
+	private Integer count;
 	/**
-	 * 右边
+	 * 备注
 	 */
-	private String postCode;
+	private String remark;
 	/**
-	 * 省份
+	 * 来源
 	 */
-	private String province;
-	/**
-	 * 城市
-	 */
-	private String city;
-	/**
-	 * 区
-	 */
-	private String region;
-	/**
-	 * 详细地址
-	 */
-	private String address;
-	/**
-	 * 是否默认地址
-	 */
-	private Integer defaultStatus;
+	private Integer sourceType;
 
 }

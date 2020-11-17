@@ -35,6 +35,36 @@ public class UserController {
     private UserService userService;
 
     /**
+     * 校验数据是否可用
+     * @param data
+     * @param type
+     * @return
+     */
+    @GetMapping("check/{data}/{type}")
+    public ResponseVo<Boolean> checkData(@PathVariable("data") String data,@PathVariable("type") Integer type){
+        Boolean flag = this.userService.checkData(data, type);
+        return ResponseVo.ok(flag);
+    }
+
+    /**
+     * 注册用户（参数见文档）
+     * @param userEntity
+     * @param code
+     * @return
+     */
+    @PostMapping("register")
+    public ResponseVo register(UserEntity userEntity, @RequestParam("code") String code){
+        this.userService.register(userEntity, code);
+        return ResponseVo.ok();
+    }
+
+    @GetMapping("query")
+    public ResponseVo<UserEntity> queryUser(@RequestParam("loginName") String loginName, @RequestParam("password") String password){
+        UserEntity userEntity = this.userService.queryUser(loginName, password);
+        return ResponseVo.ok(userEntity);
+    }
+
+    /**
      * 列表
      */
     @GetMapping
