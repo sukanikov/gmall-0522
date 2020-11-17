@@ -4,9 +4,7 @@ import com.atguigu.gmall.auth.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -22,8 +20,10 @@ public class AuthController {
         return "login";
     }
 
+
     @PostMapping("login")
-    public String login(@RequestParam("returnUrl")String returnUrl, @RequestParam("loginName") String loginName,
+    public String login(@RequestParam("returnUrl")String returnUrl,
+                        @RequestParam("loginName") String loginName,
                         @RequestParam("password") String password, HttpServletRequest request,
                         HttpServletResponse response){
         this.authService.login(loginName, password, request, response);
