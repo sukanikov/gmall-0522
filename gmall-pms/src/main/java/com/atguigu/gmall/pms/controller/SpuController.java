@@ -6,6 +6,7 @@ import java.util.List;
 import com.atguigu.gmall.pms.vo.SpuVo;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,6 +36,9 @@ public class SpuController {
 
     @Autowired
     private SpuService spuService;
+
+    @Autowired
+    private RabbitTemplate rabbitTemplate;
 
     @GetMapping("/category/{categoryId}")
     public ResponseVo<PageResultVo> querySpuByCidAndPage(
@@ -87,7 +91,6 @@ public class SpuController {
     @ApiOperation("保存")
     public ResponseVo<Object> save(@RequestBody SpuVo spu) throws FileNotFoundException {
 
-
         this.spuService.bigSave(spu);
 
         return ResponseVo.ok();
@@ -95,11 +98,14 @@ public class SpuController {
 
     /**
      * 修改
+     * 当后台管理系统修改价格后，将spuId发送给MQ（购物车监听器监听到后，根据该spuId遍历sku）
      */
     @PostMapping("/update")
     @ApiOperation("修改")
     public ResponseVo update(@RequestBody SpuEntity spu){
 		spuService.updateById(spu);
+
+		this.rabbitTemplate.convertAndSend("PMS_SPU_EXCHANGE", "item.update", spu.getId());
 
         return ResponseVo.ok();
     }
